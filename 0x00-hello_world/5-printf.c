@@ -10,6 +10,6 @@ int main(void)
 	/**
 	 * printf  - prints the formatted string
 	 */
-	printf("with proper grammar, but the outcome is a piece of art,");
+	printf("with proper grammar, but the outcome is a piece of art,\n");
 	return (0);
 }
