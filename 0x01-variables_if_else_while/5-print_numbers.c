@@ -7,11 +7,11 @@
  */
 int main(void)
 {
-	char num;
+	int num;
 
 	while (num <= 9)
 	{
-		printf('%c' num);
+		printf('%d' num);
 	}
 	purchar('\n');
 	return (0);
