@@ -18,5 +18,5 @@ int main(void)
 		putchar(capital_letter);
 	}
 	putchar('\n');
-	return (o);
+	return (0);
 }
