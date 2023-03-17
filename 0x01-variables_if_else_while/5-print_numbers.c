@@ -2,7 +2,7 @@
 
 /**
  * main - Entry point
- * prinf - Prints the output
+ * printf - Prints the output
  * Return: 0 (Success)
  */
 int main(void)
@@ -11,7 +11,7 @@ int main(void)
 
 	while (num <= 9)
 	{
-		putchar(num);
+		printf("%c", num);
 		num++;
 	}
 	putchar('\n');
