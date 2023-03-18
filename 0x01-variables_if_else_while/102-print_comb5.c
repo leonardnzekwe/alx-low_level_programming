@@ -22,18 +22,12 @@ int main(void)
 					putchar(' ');
 					putchar(c);
 					putchar(d);
-					if (c == '9' && d == '9')
-					{
-						putchar('\n');
-					}
-					else
-					{
-						putchar(',');
-						putchar(' ');
-					}
+					putchar(',');
+					putchar(' ');
 				}
 			}
 		}
 	}
+	putchar('\n');
 	return (0);
 }
