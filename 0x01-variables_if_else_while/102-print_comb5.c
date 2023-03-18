@@ -15,24 +15,21 @@ int main(void)
 		{
 			for (c = '0'; c <= '9'; c++)
 			{
-				for (d = '0'; d <= '9'; d++)
+				for (d = '1'; d <= '9'; d++)
 				{
-					if (a < b && c < d)
+					putchar(a);
+					putchar(b);
+					putchar(' ');
+					putchar(c);
+					putchar(d);
+					if (c == '9' && d == '9')
 					{
-						putchar(a);
-						putchar(b);
+						putchar('\n');
+					}
+					else
+					{
+						putchar(',');
 						putchar(' ');
-						putchar(c);
-						putchar(d);
-						if (c == '9' && d == '9')
-						{
-							putchar('\n');
-						}
-						else
-						{
-							putchar(',');
-							putchar(' ');
-						}
 					}
 				}
 			}
