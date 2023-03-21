@@ -3,6 +3,7 @@
 /**
  * _islower - Function
  * Return: 1 ? 0
+ * @c: paramemter
  */
 int _islower(int c)
 {
