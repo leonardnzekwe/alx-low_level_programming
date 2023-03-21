@@ -2,19 +2,21 @@
 
 /**
  * print_last_digit - Function
- * @c: Parameter
+ * @n: Parameter
  * Return: c
  */
-int print_last_digit(int c)
+int print_last_digit(int n)
 {
-	if (c < 0)
+	int n;
+
+	if (n < 0)
 	{
-		c = c * -1;
+		c = (n * -1) % 10;
 	}
 	else
 	{
-		c = c % 10;
+		c = n % 10;
 	}
-	_putchar((c % 10) + '0');
+	_putchar(c + '0');
 	return (c % 10);
 }
