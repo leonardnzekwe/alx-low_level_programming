@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * _islower - function
+ * _isdigit - function
  * @c: parameter
  * Return: 1 ? 0
  */
 
-int _islower(int c)
+int _isdigit(int c)
 {
 	if (c >= 48 && c <= 57)
 	{
