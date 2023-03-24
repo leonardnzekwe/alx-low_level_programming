@@ -2,9 +2,9 @@
 #include "main.h"
 
 /**
- * main - entry point
+ * main - Entry point
  * fizzbuzz - function
- * Return 0
+ * Return: 0
  */
 
 int main(void)
@@ -37,3 +37,4 @@ int main(void)
 	printf("\n");
 	return (0);
 }
+
