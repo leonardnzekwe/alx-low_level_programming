@@ -7,7 +7,7 @@
 
 void puts_half(char *str)
 {
-	int leo;
+	int leo = 0;
 	int ray;
 
 	while (str[leo] != '\0')
@@ -16,16 +16,16 @@ void puts_half(char *str)
 	}
 	if (leo % 2 == 0)
 	{
-		ray = leo / 2;
+		ray = (leo - 1) / 2;
+		ray += 1;
 	}
 	else
 	{
-		ray = (leo + 1) / 2;
+		ray = leo / 2;
 	}
-	while (ray < leo)
+	for (; ray < leo; ray++)
 	{
 		_putchar(str[ray]);
-		ray++;
 	}
 	_putchar('\n');
 }
