@@ -7,15 +7,16 @@
 
 void puts2(char *str)
 {
-	int ray;
+	int ray = 0;
+	int leo = 0;
 
 	while (str[ray] != '\0')
 	{
-		if (ray % 2 == 0)
-		{
-			_putchar(str[ray]);
-		}
 		ray++;
+	}
+	while (leo < ray)
+	{
+		_putchar(str[leo]);
 	}
 	_putchar('\n');
 }
