@@ -25,6 +25,7 @@ void puts_half(char *str)
 	while (ray < leo)
 	{
 		_putchar(str[leo]);
+		ray++;
 	}
 	_putchar('\n');
 }
