@@ -7,7 +7,7 @@
 
 void puts_half(char *str)
 {
-	int leo = 0;
+	int leo;
 	int ray;
 
 	while (str[leo] != '\0')
@@ -24,7 +24,7 @@ void puts_half(char *str)
 	}
 	while (ray < leo)
 	{
-		_putchar(str[leo]);
+		_putchar(str[ray]);
 		ray++;
 	}
 	_putchar('\n');
