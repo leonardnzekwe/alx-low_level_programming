@@ -25,7 +25,7 @@ int _atoi(char *s)
 			ray = (ray * 10) + (s[r] - '0');
 			r++;
 		}
-		if (y == 0)
+		if (y == 1)
 		{
 			break;
 		}
