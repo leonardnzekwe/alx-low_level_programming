@@ -9,9 +9,9 @@
 int _atoi(char *s)
 {
 	int r = 0;
+	unsigned int ray = 0;
 	int a = 1;
 	int y = 0;
-	unsigned int ray = 0;
 
 	while (s[r])
 	{
@@ -19,7 +19,7 @@ int _atoi(char *s)
 		{
 			a *= -1;
 		}
-		while (s[r] >= 48 && s[r] <=57)
+		while (s[r] >= 48 && s[r] <= 57)
 		{
 			y = 1;
 			ray = (ray * 10) + (s[r] - '0');
