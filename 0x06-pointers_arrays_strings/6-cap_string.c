@@ -6,26 +6,28 @@
  * Return: ray
  */
 
-char *cap_string(char *ray)
+char *cap_string(char *s)
 {
-	int a = 1;
-	int b;
-	int leo[] = " \t\n,;.!?\"(){}";
+	int ray = 0;
 
-	if (ray[0] >= 'a' && ray[0] <= 'z')
+	while (s[ray] != '\0')
 	{
-		ray[0] -= ('a' - 'A');
-	}
-	while (ray[a] != '\0')
-	{
-		for (b = 0; leo[b] != '\0'; b++)
+		if (s[0] >= 97 && s[0] <= 122)
 		{
-			if (ray[a - 1] == leo[b] && (ray[a] >= 'a' && ray[a] <= 'z'))
+			s[0] = s[0] - 32;
+		}
+		if (s[ray] == ' ' || s[ray] == '\t' || s[ray] == '\n'
+		    || s[ray] == ',' || s[ray] == ';' || s[ray] == '.'
+		    || s[ray] == '.' || s[ray] == '!' || s[ray] == '?'
+		    || s[ray] == '"' || s[ray] == '(' || s[ray] == ')'
+		    || s[ray] == '{' || s[ray] == '}')
+		{
+			if (s[ray + 1] >= 97 && s[ray + 1] <= 122)
 			{
-				ray[a] -= ('a' - 'A');
+				s[ray + 1] = s[ray + 1] - 32;
 			}
 		}
-		a++;
+		ray++;
 	}
-	return (ray);
+	return (s);
 }
