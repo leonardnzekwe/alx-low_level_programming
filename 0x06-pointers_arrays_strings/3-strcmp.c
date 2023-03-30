@@ -11,12 +11,9 @@ int _strcmp(char *s1, char *s2)
 {
 	int ray = 0;
 
-	while (s1[ray] != '\0' || s2[ray] != '\0')
+	while (s1[ray] != '\0' && s2[ray] != '\0' && s1[ray] == s2[ray]);
 	{
-		if (s1[ray] != s2[ray])
-		{
-			return (s1[ray] - s2[ray]);
-		}
+		;
 	}
-	return (0);
+	return (s1[ray] - s2[ray]);
 }
