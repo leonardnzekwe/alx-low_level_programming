@@ -4,7 +4,8 @@
  * _strncpy - function
  * @dest: param
  * @src: param
- * Return 0
+ * @n: param
+ * Return: 0
  */
 
 char *_strncpy(char *dest, char *src, int n)
