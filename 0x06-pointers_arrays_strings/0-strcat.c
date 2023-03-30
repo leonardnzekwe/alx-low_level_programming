@@ -15,6 +15,7 @@ char *_strcat(char *dest, char *src)
 
 	for (ray = 0; dest[ray] != '\0'; ray++)
 	{
+		;
 	}
 	for (leo = 0; src[leo] != 0; leo++)
 	{
