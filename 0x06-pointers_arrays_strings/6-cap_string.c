@@ -6,28 +6,28 @@
  * Return: ray
  */
 
-char *cap_string(char *s)
+char *cap_string(char *ray)
 {
-	int ray = 0;
+	int leo = 0;
 
-	while (s[ray] != '\0')
+	while (ray[leo] != '\0')
 	{
-		if (s[0] >= 97 && s[0] <= 122)
+		if (ray[0] >= 97 && ray[0] <= 122)
 		{
-			s[0] = s[0] - 32;
+			ray[0] = ray[0] - 32;
 		}
-		if (s[ray] == ' ' || s[ray] == '\t' || s[ray] == '\n'
-		    || s[ray] == ',' || s[ray] == ';' || s[ray] == '.'
-		    || s[ray] == '.' || s[ray] == '!' || s[ray] == '?'
-		    || s[ray] == '"' || s[ray] == '(' || s[ray] == ')'
-		    || s[ray] == '{' || s[ray] == '}')
+		if (ray[leo] == ' ' || ray[leo] == '\t' || ray[leo] == '\n'
+		    || ray[leo] == ',' || ray[leo] == ';' || ray[leo] == '.'
+		    || ray[leo] == '.' || ray[leo] == '!' || ray[leo] == '?'
+		    || ray[leo] == '"' || ray[leo] == '(' || ray[leo] == ')'
+		    || ray[leo] == '{' || ray[leo] == '}')
 		{
-			if (s[ray + 1] >= 97 && s[ray + 1] <= 122)
+			if (ray[leo + 1] >= 97 && ray[leo + 1] <= 122)
 			{
-				s[ray + 1] = s[ray + 1] - 32;
+				ray[leo + 1] = ray[leo + 1] - 32;
 			}
 		}
-		ray++;
+		leo++;
 	}
-	return (s);
+	return (ray);
 }
