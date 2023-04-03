@@ -15,7 +15,6 @@ char *memset(char *s, char b, unsigned int n)
 	for (leo = 0; leo < n; leo++)
 	{
 		s[leo] = b;
-		_putchar(*s);
 	}
 	return (s);
 }
