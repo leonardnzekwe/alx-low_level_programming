@@ -4,6 +4,7 @@
  * _strchr - function
  * @s: param
  * @c: param
+ * Return: NULL
  */
 
 char *_strchr(char *s, char c)
