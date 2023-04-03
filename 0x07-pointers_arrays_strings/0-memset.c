@@ -4,7 +4,7 @@
  * memset - function
  * @s: param
  * @b: param
- * n: param
+ * @n: param
  * Return: s
  */
 
