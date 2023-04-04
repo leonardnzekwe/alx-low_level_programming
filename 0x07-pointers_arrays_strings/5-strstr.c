@@ -9,11 +9,13 @@
 
 char *_strstr(char *haystack, char *needle)
 {
-	for (; *haystack; haystack++)
+	int leo;
+
+	for (leo = 0; haystack[leo] != '\0'; leo++)
 	{
-		if (*needle == *haystack)
+		if (needle[0] == haystack[leo])
 		{
-			return (haystack);
+			return (haystack + leo);
 		}
 	}
 	return ('\0');
