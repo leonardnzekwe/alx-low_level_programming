@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * set-string - function
+ * set_string - function
  * @s: param
  * @to: param
  */
