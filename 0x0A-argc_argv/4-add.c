@@ -12,10 +12,11 @@ int main(int argc, char *argv[])
 {
 	int ray;
 	int sum = 0;
+	int leo = 0;
 
 	if (argc == 1)
 	{
-		printf("%d\n", 0);
+		printf("%d\n", leo);
 	}
 	else if (argc > 1)
 	{
