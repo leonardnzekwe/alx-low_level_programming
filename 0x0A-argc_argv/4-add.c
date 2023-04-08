@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 
 /**
  * main - function
@@ -11,24 +10,26 @@
 
 int main(int argc, char *argv[])
 {
-	int ray;
+	int ray, leo;
 	int sum = 0;
-	int leo = 0;
 
 	if (argc == 1)
 	{
-		printf("%d\n", leo);
+		printf("0\n");
 	}
 	else if (argc > 1)
 	{
 		for (ray = 1; ray < argc; ray++)
 		{
-			sum = sum + atoi(argv[ray]);
-			if (*argv[ray] < 48 || *argv[ray] > 57)
+			for (leo = 0; argv[ray][leo] != '\0'; leo++)
 			{
-				printf("Error\n");
-				return (1);
+				if (argv[ray][leo] < 48 || argv[ray][leo] > 57)
+				{
+					printf("Error\n");
+					return (1);
+				}
 			}
+			sum = sum + atoi(argv[ray]);
 		}
 		printf("%d\n", sum);
 	}
