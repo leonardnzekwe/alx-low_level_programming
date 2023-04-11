@@ -25,7 +25,7 @@ char *str_concat(char *s1, char *s2)
 	{
 		;
 	}
-	for (b = 0; s1[b]; b++)
+	for (b = 0; s2[b]; b++)
 	{
 		;
 	}
