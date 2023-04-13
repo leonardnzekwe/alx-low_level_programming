@@ -33,10 +33,8 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	c = a + b + 1;
 	p = malloc(sizeof(char) * c);
 	if (p == NULL)
-	{
 		return (NULL);
-	}
-	for (d = 0; d < (c - 1); d++)
+	for (d = 0; d < c - 1; d++)
 	{
 		if (d < a)
 			p[d] = s1[d];
