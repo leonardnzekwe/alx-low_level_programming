@@ -14,9 +14,9 @@ dog_t *new_dog(char *name, float age, char *owner)
 	int a, b, c;
 	dog_t *daisy;
 
-	for (a = 0; name[a]; a++)
+	for (a = 0; name[a++];)
 		;
-	for (b = 0; owner[b]; b++)
+	for (b = 0; owner[b++];)
 		;
 	daisy = malloc(sizeof(dog_t));
 	if (daisy == NULL)
