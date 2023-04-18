@@ -11,15 +11,17 @@
 
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	int a, b, c;
+	int a = 0;
+	int b = 0;
+	int c;
 	dog_t *daisy;
 
 	if (name == NULL || owner == NULL)
 		return (NULL);
 	
-	for (a = 0; name[a++];)
+	while (name[a++])
 		;
-	for (b = 0; owner[b++];)
+	while (owner[b++])
 		;
 	
 	daisy = malloc(sizeof(dog_t));
