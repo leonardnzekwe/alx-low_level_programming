@@ -17,9 +17,9 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (name == NULL || owner == NULL)
 		return (NULL);
 	
-	for (a = 0; name[a] != '\0'; a++)
+	for (a = 0; name[a++];)
 		;
-	for (b = 0; owner[b] != '\0'; b++)
+	for (b = 0; owner[b++];)
 		;
 	
 	daisy = malloc(sizeof(dog_t));
