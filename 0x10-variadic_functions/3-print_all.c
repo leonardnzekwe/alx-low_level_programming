@@ -8,9 +8,9 @@
 void print_all(const char * const format, ...)
 {
 	va_list args;
-	unsigned int i, j;
+	int i, j;
 	char *separator;
-	fmt fmt_specs[] = {
+	const fmt fmt_specs[] = {
 		{'c', char_print},
 		{'i', int_print},
 		{'f', float_print},
@@ -18,7 +18,6 @@ void print_all(const char * const format, ...)
 	};
 
 	i = 0;
-	j = 0;
 	separator = "";
 	va_start(args, format);
 	while (format != NULL && format[i] != '\0')
