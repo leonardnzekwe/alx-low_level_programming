@@ -11,10 +11,10 @@ void print_all(const char * const format, ...)
 	int i, j;
 	char *separator;
 	fmt fmt_specs[] = {
-		{"c", char_print},
-		{"i", int_print},
-		{"f", float_print},
-		{"s", string_print}
+		{'c', char_print},
+		{'i', int_print},
+		{'f', float_print},
+		{'s', string_print}
 	};
 
 	i = 0;
@@ -25,7 +25,7 @@ void print_all(const char * const format, ...)
 		j = 0;
 		while (j < 4)
 		{
-			if (format[i] == *(fmt_specs[j]).fmt_sign)
+			if (format[i] == (fmt_specs[j]).fmt_sign)
 			{
 				printf("%s", separator);
 				(fmt_specs[j]).fmt_func_ptr(args);

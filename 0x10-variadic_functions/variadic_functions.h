@@ -11,7 +11,7 @@
 
 typedef struct format_specifier
 {
-	char *fmt_sign;
+	char fmt_sign;
 	void (*fmt_func_ptr)(va_list);
 } fmt;
 
