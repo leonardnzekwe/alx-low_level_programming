@@ -78,11 +78,13 @@ void float_print(va_list f)
 
 void string_print(va_list s)
 {
-	char *string = va_arg(s, char *);
+	char *string;
 
+	string = va_arg(s, char *);
 	if (string == NULL)
 	{
 		printf("(nil)");
+		return;
 	}
 	printf("%s", string);
 }
