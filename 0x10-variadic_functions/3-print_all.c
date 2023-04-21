@@ -8,7 +8,7 @@
 void print_all(const char * const format, ...)
 {
 	va_list args;
-	int i, j;
+	unsigned int i, j;
 	char *separator;
 	fmt fmt_specs[] = {
 		{'c', char_print},
