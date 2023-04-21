@@ -80,12 +80,9 @@ void string_print(va_list s)
 {
 	char *string = va_arg(s, char *);
 
-	if (string != NULL)
-	{
-		printf("%s", string);
-	}
-	else
+	if (string == NULL)
 	{
 		printf("(nil)");
 	}
+	printf("%s", string);
 }
