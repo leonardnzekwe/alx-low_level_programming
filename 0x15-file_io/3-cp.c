@@ -99,10 +99,11 @@ void close_file(int fd)
 void copy_file(int source_fd, int dest_fd,
 		char *buffer, char *source_file, char *dest_file)
 {
-	int bytes_read, bytes_written;
+	int bytes_read, bytes_written, total_bytes_read;
 
 	bytes_read = 0;
 	bytes_written = 0;
+	total_bytes_read = 0;
 	while ((bytes_read = read(source_fd, buffer, BUFFER_SIZE)) > 0)
 	{
 		bytes_written = write(dest_fd, buffer, bytes_read);
@@ -111,8 +112,9 @@ void copy_file(int source_fd, int dest_fd,
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_file);
 			exit(99);
 		}
+		total_bytes_read = total_bytes_read + bytes_read;
 	}
-	if (bytes_read == -1)
+	if (bytes_read == -1 || total_bytes_read == 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", source_file);
 		exit(98);
