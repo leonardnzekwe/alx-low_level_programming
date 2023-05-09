@@ -1,86 +1,120 @@
 #include "main.h"
 
 /**
- * main - Copies the contents of one file to another.
- * @argc: The number of command-line arguments.
- * @argv: An array of pointers to the arguments.
- * Return: 0 on success.
+ * main - Entry point of the program
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: Success (0)
  */
+
 int main(int argc, char *argv[])
 {
-	int from_file, to_file, read_status, write_status;
 	char *buffer;
+	int source_fd;
+	int dest_fd;
 
 	if (argc != 3)
 	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "Usage: %s source_file dest_file\n", argv[0]);
 		exit(97);
 	}
-
-	buffer = create_buffer(argv[2]);
-	from_file = open(argv[1], O_RDONLY);
-	read_status = read(from_file, buffer, 1024);
-	to_file = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-
-	do {
-		if (from_file == -1 || read_status == -1)
-		{
-			dprintf(STDERR_FILENO,
-				"Error: Can't read from file %s\n", argv[1]);
-			free(buffer);
-			exit(98);
-		}
-		write_status = write(to_file, buffer, read_status);
-		if (to_file == -1 || write_status == -1)
-		{
-			dprintf(STDERR_FILENO,
-				"Error: Can't write to %s\n", argv[2]);
-			free(buffer);
-			exit(99);
-		}
-		read_status = read(from_file, buffer, 1024);
-		to_file = open(argv[2], O_WRONLY | O_APPEND);
-	} while (read_status > 0);
-
+	buffer = malloc(BUFFER_SIZE);
+	if (buffer == NULL)
+	{
+		return (-1);
+	}
+	source_fd = open_source_file(argv[1]);
+	dest_fd = open_dest_file(argv[2]);
+	copy_file(source_fd, dest_fd, buffer, argv[1], argv[2]);
+	close_file(source_fd);
+	close_file(dest_fd);
 	free(buffer);
-	close_file(from_file);
-	close_file(to_file);
-
 	return (0);
 }
 
 /**
- * create_buffer - Allocates memory for a buffer.
- * @file_name: The name of the file to be copied.
- * Return: A pointer to the buffer.
+ * open_source_file - function to open source file
+ * @source_file: the second argument in the command line
+ * Return: fd
  */
-char *create_buffer(char *file_name)
-{
-	char *buffer;
 
-	buffer = malloc(sizeof(char) * 1024);
-	if (buffer == NULL)
+int open_source_file(char *source_file)
+{
+	int fd;
+
+	fd = open(source_file, O_RDONLY);
+	if (fd == -1)
 	{
-		dprintf(STDERR_FILENO,
-			"Error: Can't write to %s\n", file_name);
-		exit(99);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", source_file);
+		exit(98);
 	}
-	return (buffer);
+	return (fd);
 }
 
 /**
- * close_file - Closes a file descriptor.
- * @fd: The file descriptor to be closed.
+ * open_dest_file - function to open the destination file
+ * @dest_file: the third argument in the command line
+ * Return: fd
  */
+
+int open_dest_file(char *dest_file)
+{
+	int fd;
+
+	fd = open(dest_file, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	if (fd == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_file);
+		exit(99);
+	}
+	return (fd);
+}
+
+/**
+ * close_file - function to close the files
+ * @fd: file description parameter
+ */
+
 void close_file(int fd)
 {
-	int status;
+	int result;
 
-	status = close(fd);
-	if (status == -1)
+	result = close(fd);
+	if (result == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Unable to close fd %d\n", fd);
 		exit(100);
 	}
 }
 
+/**
+ * copy_file - function to copy the files
+ * @source_fd: source fd
+ * @dest_fd: destination fd
+ * @buffer: buffer to hold the value while coping
+ * @source_file: source file (argv[1])
+ * @dest_file: destination file (argv[2])
+ */
+
+void copy_file(int source_fd, int dest_fd,
+		char *buffer, char *source_file, char *dest_file)
+{
+	int bytes_read, bytes_written;
+
+	bytes_read = 0;
+	bytes_written = 0;
+	while ((bytes_read = read(source_fd, buffer, BUFFER_SIZE)) > 0)
+	{
+		bytes_written = write(dest_fd, buffer, bytes_read);
+		if (bytes_written == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_file);
+			exit(99);
+		}
+	}
+	if (bytes_read == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", source_file);
+		exit(98);
+	}
+}

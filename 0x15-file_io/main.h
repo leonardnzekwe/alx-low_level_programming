@@ -11,7 +11,11 @@ int create_file(const char *filename, char *text_content);
 int append_text_to_file(const char *filename, char *text_content);
 
 /* Task 3 */
-char *create_buffer(char *file_name);
+#define BUFFER_SIZE 1024
+int open_source_file(char *source_file);
+int open_dest_file(char *dest_file);
 void close_file(int fd);
+void copy_file(int source_fd, int dest_fd,
+char *buffer, char *source_file, char *dest_file);
 
 #endif /* MAIN_H */
