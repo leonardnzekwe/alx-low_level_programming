@@ -9,8 +9,7 @@
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	size_t i;
-	int file_desc, letters_read, print_count;
+	int file_desc, letters_read, letters_written;
 	char *buffer;
 
 	if (filename == NULL)
@@ -32,12 +31,8 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	{
 		return (0);
 	}
-	for (i = 0; i <= letters; i++)
-	{
-		write(STDOUT_FILENO, &buffer[i], 1);
-		print_count++;
-	}
-	if (print_count == letters_read)
+	letters_written = write(STDOUT_FILENO, buffer, letters);
+	if (letters_written == -1)
 	{
 		return (0);
 	}
