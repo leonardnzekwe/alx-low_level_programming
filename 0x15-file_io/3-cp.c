@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 		if (to_file == -1 || write_status == -1)
 		{
 			dprintf(STDERR_FILENO,
-				"Error: Can't write to file %s\n", argv[2]);
+				"Error: Can't write to %s\n", argv[2]);
 			free(buffer);
 			exit(99);
 		}
@@ -62,7 +62,7 @@ char *create_buffer(char *file_name)
 	if (buffer == NULL)
 	{
 		dprintf(STDERR_FILENO,
-			"Error: Can't allocate memory for buffer in %s\n", file_name);
+			"Error: Can't write to %s\n", file_name);
 		exit(99);
 	}
 	return (buffer);
