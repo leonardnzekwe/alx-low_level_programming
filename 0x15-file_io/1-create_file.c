@@ -16,8 +16,7 @@
 
 int create_file(const char *filename, char *text_content)
 {
-	ssize_t str_len;
-	int file_desc, byte_written;
+	int file_desc, byte_written, str_len;
 
 	str_len = 0;
 	if (filename == NULL)
@@ -39,6 +38,7 @@ int create_file(const char *filename, char *text_content)
 	byte_written = write(file_desc, text_content, str_len);
 	if (byte_written == -1)
 	{
+		close(file_desc);
 		return (-1);
 	}
 	close(file_desc);
