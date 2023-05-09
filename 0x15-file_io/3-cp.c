@@ -1,140 +1,86 @@
 #include "main.h"
 
-#define BUFFER_SIZE 1024
-
 /**
- * main - entry point
- * @argc: argument count
- * @argv: argument vector
- * Return: 0
+ * main - Copies the contents of one file to another.
+ * @argc: The number of command-line arguments.
+ * @argv: An array of pointers to the arguments.
+ * Return: 0 on success.
  */
-
 int main(int argc, char *argv[])
 {
+	int from_file, to_file, read_status, write_status;
 	char *buffer;
-	int source_fd;
-	int dest_fd;
 
-	if (!check_arguments(argc))
+	if (argc != 3)
 	{
-		fprintf(stderr, "Usage: %s source_file dest_file\n", argv[0]);
-		exit(EXIT_FAILURE);
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
 	}
-	buffer = allocate_buffer();
-	source_fd = open_source_file(argv[1]);
-	dest_fd = open_dest_file(argv[2]);
-	copy_file(source_fd, dest_fd, buffer);
-	close_file(source_fd, argv[1]);
-	close_file(dest_fd, argv[2]);
+
+	buffer = create_buffer(argv[2]);
+	from_file = open(argv[1], O_RDONLY);
+	read_status = read(from_file, buffer, 1024);
+	to_file = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+
+	do {
+		if (from_file == -1 || read_status == -1)
+		{
+			dprintf(STDERR_FILENO,
+				"Error: Can't read from file %s\n", argv[1]);
+			free(buffer);
+			exit(98);
+		}
+		write_status = write(to_file, buffer, read_status);
+		if (to_file == -1 || write_status == -1)
+		{
+			dprintf(STDERR_FILENO,
+				"Error: Can't write to file %s\n", argv[2]);
+			free(buffer);
+			exit(99);
+		}
+		read_status = read(from_file, buffer, 1024);
+		to_file = open(argv[2], O_WRONLY | O_APPEND);
+	} while (read_status > 0);
+
 	free(buffer);
-	exit(EXIT_SUCCESS);
+	close_file(from_file);
+	close_file(to_file);
+
+	return (0);
 }
 
 /**
- * check_arguments - function
- * @argc: param
- * Return: 0
+ * create_buffer - Allocates memory for a buffer.
+ * @file_name: The name of the file to be copied.
+ * Return: A pointer to the buffer.
  */
-
-int check_arguments(int argc)
+char *create_buffer(char *file_name)
 {
-	return (argc == 3);
-}
+	char *buffer;
 
-/**
- * allocate_buffer - function
- * Return: buffer
- */
-
-char *allocate_buffer()
-{
-	char *buffer = malloc(BUFFER_SIZE);
-
+	buffer = malloc(sizeof(char) * 1024);
 	if (buffer == NULL)
 	{
-		fprintf(stderr, "Error: Unable to allocate memory for buffer\n");
-		exit(EXIT_FAILURE);
+		dprintf(STDERR_FILENO,
+			"Error: Can't allocate memory for buffer in %s\n", file_name);
+		exit(99);
 	}
 	return (buffer);
 }
 
 /**
- * open_source_file - function
- * @source_file: param
- * Return: 0
+ * close_file - Closes a file descriptor.
+ * @fd: The file descriptor to be closed.
  */
-
-int open_source_file(char *source_file)
+void close_file(int fd)
 {
-	int fd = open(source_file, O_RDONLY);
+	int status;
 
-	if (fd == -1)
+	status = close(fd);
+	if (status == -1)
 	{
-		fprintf(stderr, "Error: Unable to open source file %s\n", source_file);
-		exit(EXIT_FAILURE);
-	}
-	return (fd);
-}
-
-/**
- * open_dest_file - function
- * @dest_file: param
- * Return: fd
- */
-
-int open_dest_file(char *dest_file)
-{
-	int fd = open(dest_file, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-
-	if (fd == -1)
-	{
-		fprintf(stderr, "Error: Unable to open destination file %s\n", dest_file);
-		exit(EXIT_FAILURE);
-	}
-	return (fd);
-}
-
-/**
- * close_file - function
- * @fd: param
- * @file: param
- */
-
-void close_file(int fd, char *file)
-{
-	int result = close(fd);
-
-	if (result == -1)
-	{
-		fprintf(stderr, "Error: Unable to close file %s\n", file);
-		exit(EXIT_FAILURE);
-	}
-}
-
-/**
- * copy_file - function
- * @source_fd: param
- * @dest_fd: param
- * @buffer: param
- */
-
-void copy_file(int source_fd, int dest_fd, char *buffer)
-{
-	int bytes_read = 0, bytes_written = 0;
-
-	while ((bytes_read = read(source_fd, buffer, BUFFER_SIZE)) > 0)
-	{
-		bytes_written = write(dest_fd, buffer, bytes_read);
-		if (bytes_written == -1)
-		{
-			fprintf(stderr, "Error: Unable to write to destination file\n");
-			exit(EXIT_FAILURE);
-		}
-	}
-	if (bytes_read == -1)
-	{
-		fprintf(stderr, "Error: Unable to read from source file\n");
-		exit(EXIT_FAILURE);
+		dprintf(STDERR_FILENO, "Error: Can't close file descriptor %d\n", fd);
+		exit(100);
 	}
 }
 
