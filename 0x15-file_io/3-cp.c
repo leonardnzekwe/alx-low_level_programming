@@ -82,7 +82,7 @@ void close_file(int fd)
 	result = close(fd);
 	if (result == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Unable to close fd %d\n", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
 }
