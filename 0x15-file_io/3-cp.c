@@ -99,17 +99,22 @@ void close_file(int fd)
 void copy_file(int source_fd, int dest_fd,
 		char *buffer, char *source_file, char *dest_file)
 {
-	int bytes_read, bytes_written;
+	int bytes_read, bytes_written, total_bytes_written;
 
 	bytes_read = 0;
 	bytes_written = 0;
 	while ((bytes_read = read(source_fd, buffer, BUFFER_SIZE)) > 0)
 	{
-		bytes_written = write(dest_fd, buffer, bytes_read);
-		if (bytes_written == -1)
+		total_bytes_written = 0;
+		while (total_bytes_written < bytes_read)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_file);
-			exit(99);
+			bytes_written = write(dest_fd, buffer + total_bytes_written, bytes_read - total_bytes_written);
+			if (bytes_written == -1)
+			{
+				dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_file);
+				exit(99);
+			}
+			total_bytes_written = total_bytes_written + bytes_written;
 		}
 	}
 	if (bytes_read == -1)
