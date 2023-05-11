@@ -105,7 +105,10 @@ void copy_file(int source_fd, int dest_fd,
 	bytes_written = 0;
 	while ((bytes_read = read(source_fd, buffer, BUFFER_SIZE)) > 0)
 	{
-		bytes_written = write(dest_fd, buffer, bytes_read);
+		if (bytes_read < BUFFER_SIZE)
+			bytes_written = write(dest_fd, buffer, bytes_read);
+		else
+			bytes_written = write(dest_fd, buffer, BUFFER_SIZE);
 		if (bytes_written == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_file);
