@@ -61,7 +61,7 @@ int open_dest_file(char *dest_file)
 {
 	int fd;
 
-	fd = open(dest_file, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	fd = open(dest_file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest_file);
