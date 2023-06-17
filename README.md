@@ -23,3 +23,4 @@ This is my alx-low_level_programming repo
 - C - More singly linked lists
 - C - Bit manipulation
 - C - File I/O
+- C - Doubly linked lists
