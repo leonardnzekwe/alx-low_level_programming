@@ -36,9 +36,9 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	else
 	{
 		ptr = ht->array[index];
-		while (ptr != NULL)
+		while (ptr->next != NULL)
 		{
-			if (strcmp(ptr->key, key))
+			if (strcmp(ptr->key, key) == 0)
 			{ free(ptr->value);
 				ptr->value = strdup(value);
 				if (ptr->value == NULL)
