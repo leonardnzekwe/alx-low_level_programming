@@ -39,8 +39,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 			ptr->value = strdup(value);
 			if (ptr->value == NULL)
 				return (0);
-			return (1);
-		}
+		}	
 	}
 
 	if (ht->array[index] == NULL)
