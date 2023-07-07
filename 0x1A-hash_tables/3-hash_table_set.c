@@ -39,11 +39,11 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	new_node->value = value_dup;
 	new_node->next = NULL;
 
-	ptr = ht->array[index];
-	if (ptr == NULL)
-		ptr = new_node;
+	if (ht->array[index] == NULL)
+		ht->array[index] = new_node;
 	else
 	{
+		ptr = ht->array[index];
 		while (ptr->next != NULL)
 			ptr = ptr->next;
 		ptr->next = new_node;
