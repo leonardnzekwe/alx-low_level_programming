@@ -25,11 +25,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 	while (ptr->next != NULL)
 	{
-		if (strcmp(ptr->key, key) == 0)
-		{ free(ptr->value);
-			ptr->value = value_dup;
-			return (1);
-		} ptr = ptr->next;
+		ptr = ptr->next;
 	}
 	key_dup = strdup(key);
 	if (key_dup == NULL)
