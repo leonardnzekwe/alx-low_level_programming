@@ -25,3 +25,4 @@ This is my alx-low_level_programming repo
 - C - File I/O
 - C - Doubly linked lists
 - C - Dynamic libraries
+- C - Hash tables
