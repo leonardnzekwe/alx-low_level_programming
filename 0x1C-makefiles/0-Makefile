@@ -1,0 +1,8 @@
+# Makefile for building 'school' executable
+
+# The all (default) rule builds one's executable
+all: school
+
+# Compile the 'school' executable using it's dependencies
+school: main.c school.c m.h
+	gcc main.c school.c -o school
