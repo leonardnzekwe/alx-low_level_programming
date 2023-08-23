@@ -1,12 +1,12 @@
 # Makefile for building 'school' executable
 
-# The all (default) rule builds one's executable
-all: school
-
 # Makefiles Variables for 'school' executable
 CC = gcc
 SRC = main.c school.c
 
-# Compile the 'school' executable using it's dependencies
-school: main.c school.c m.h
+# The all (default) rule builds one's executable
+all: school
+
+# Compile the 'school' executables
+school: $(SRC)
 	$(CC) $(SRC) -o school

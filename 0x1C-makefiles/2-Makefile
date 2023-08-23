@@ -1,0 +1,18 @@
+# Makefile for building 'school' executable
+
+# Makefiles Variables for 'school' executable
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+
+# The all (default) rule builds one's executable
+all: $(NAME)
+
+# Rule to compile the source file
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+# Rule to compile source files to object files
+%.o: %.c
+	$(CC) -c -o $@ $<
