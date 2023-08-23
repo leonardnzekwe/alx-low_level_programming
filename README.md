@@ -26,3 +26,4 @@ This is my alx-low_level_programming repo
 - C - Doubly linked lists
 - C - Dynamic libraries
 - C - Hash tables
+- C - Makefiles
