@@ -32,7 +32,6 @@ def get_length(grid, col_index):
     """
     get_length function:
     that return the length of the grid
-    by getting the 
     """
     row_list = []
     length = 0
