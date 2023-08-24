@@ -15,6 +15,10 @@ all: $(OBJ)
 clean:
 	@$(RM) $(OBJ) $(NAME)
 
+# Rule that deletes the object files
+oclean:
+	@rm -f $(OBJ)
+
 # Rule that deletes all Emacs and Vim temporary files, the executable, and the object files
 fclean: clean
 	@$(RM) $(NAME)
